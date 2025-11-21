@@ -2,1377 +2,425 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KidzFun Games - Ultimate Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KidzFun Games - 18 Amazing Games!</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif;
-            background: linear-gradient(270deg, #ff6b6b, #4ecdc4, #45b7d1, #f093fb, #667eea, #764ba2);
-            background-size: 1200% 1200%;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            animation: rainbowGradient 15s ease infinite;
-        }
-
-        @keyframes rainbowGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: particleFloat 20s infinite linear;
-            box-shadow: 0 0 20px currentColor;
-        }
-
-        @keyframes particleFloat {
-            0% { transform: translate(0, 100vh) rotate(0deg) scale(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translate(100vw, -100vh) rotate(720deg) scale(1.5); opacity: 0; }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.05); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Login Page Styles */
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .login-box {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 40px;
-            padding: 50px 40px;
-            max-width: 450px;
-            width: 100%;
-            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
-            border: 3px solid rgba(255, 255, 255, 0.5);
-            animation: slideUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(100px) scale(0.8); opacity: 0; }
-            to { transform: translateY(0) scale(1); opacity: 1; }
-        }
-
-        .login-logo {
-            text-align: center;
-            font-size: 4em;
-            margin-bottom: 20px;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .login-title {
-            text-align: center;
-            font-size: 2.5em;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .login-subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-        }
-
-        .input-group {
-            margin-bottom: 25px;
-        }
-
-        .input-label {
-            display: block;
-            margin-bottom: 8px;
-            color: #667eea;
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 15px 20px;
-            border: 3px solid #e0e0e0;
-            border-radius: 20px;
-            font-size: 1.1em;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            background: white;
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
-            transform: scale(1.02);
-        }
-
-        .login-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            border: none;
-            padding: 18px;
-            font-size: 1.4em;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.5);
-            transition: all 0.3s ease;
-            font-family: inherit;
-            margin-top: 10px;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.7);
-        }
-
-        .login-btn:active {
-            transform: translateY(0) scale(0.98);
-        }
-
-        .welcome-text {
-            text-align: center;
-            margin-top: 20px;
-            color: #667eea;
-            font-size: 1em;
-        }
-
-        .login-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .login-link {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .login-link:hover {
-            color: #764ba2;
-            transform: scale(1.1);
-        }
-
-        /* Main Game Styles */
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-            display: none;
-        }
-
-        .container.active {
-            display: block;
-        }
-
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            border-radius: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-            animation: bounce 3s ease-in-out infinite;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-        }
-
-        h1 {
-            font-size: clamp(2em, 7vw, 4.5em);
-            background: linear-gradient(45deg, #fff, #f093fb, #fff, #4ecdc4, #fff);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textShimmer 3s ease infinite;
-            margin-bottom: 15px;
-            letter-spacing: 3px;
-            font-weight: bold;
-        }
-
-        @keyframes textShimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .subtitle {
-            font-size: clamp(1em, 3vw, 1.8em);
-            color: #fff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .user-info {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 15px 25px;
-            border-radius: 25px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            font-weight: bold;
-            font-size: 1.1em;
-            z-index: 999;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .logout-btn {
-            background: linear-gradient(135deg, #f5576c, #ff6b6b);
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-left: 15px;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .logout-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .nav-menu {
-            position: fixed;
-            top: 20px;
-            right: 80px;
-            display: none;
-            gap: 10px;
-            z-index: 999;
-        }
-
-        .nav-menu.active {
-            display: flex;
-        }
-
-        .nav-btn {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            color: white;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 20px;
-        }
-
-        .game-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
-            border-radius: 30px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .game-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
-        }
-
-        .game-icon {
-            font-size: clamp(3em, 8vw, 5em);
-            margin-bottom: 20px;
-            animation: bounce 2s ease-in-out infinite;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
-        }
-
-        .game-card:hover .game-icon {
-            animation: spin 1s ease-in-out;
-        }
-
-        .game-title {
-            font-size: clamp(1.3em, 4vw, 2em);
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-        .game-description {
-            font-size: clamp(0.9em, 2.5vw, 1.1em);
-            color: #555;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .play-btn {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: clamp(1em, 3vw, 1.3em);
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.5);
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .play-btn:hover {
-            transform: scale(1.15);
-            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.7);
-        }
-
-        .game-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .game-content {
-            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-            border-radius: 40px;
-            padding: 40px;
-            max-width: 700px;
-            width: 95%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideUp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(135deg, #f5576c, #ff6b6b);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.8em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.5);
-            z-index: 10;
-        }
-
-        .close-btn:hover {
-            transform: rotate(90deg) scale(1.1);
-        }
-
-        .game-area {
-            margin-top: 30px;
-        }
-
-        .memory-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .memory-card {
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: clamp(2em, 5vw, 3em);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .memory-card:hover {
-            transform: scale(1.1);
-        }
-
-        .memory-card.flipped {
-            background: white;
-        }
-
-        .score {
-            font-size: clamp(1.2em, 4vw, 1.8em);
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: bold;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .quiz-question {
-            font-size: clamp(1.8em, 5vw, 2.8em);
-            color: #667eea;
-            margin: 30px 0;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .quiz-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .quiz-option {
-            padding: 20px;
-            font-size: clamp(1.2em, 3vw, 1.5em);
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.4);
-        }
-
-        .quiz-option:hover {
-            transform: scale(1.1);
-        }
-
-        .color-display {
-            width: min(250px, 80vw);
-            height: min(250px, 80vw);
-            border-radius: 30px;
-            margin: 20px auto;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-            transition: all 0.5s ease;
-        }
-
-        .color-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .color-btn {
-            width: clamp(60px, 15vw, 90px);
-            height: clamp(60px, 15vw, 90px);
-            border-radius: 50%;
-            border: 5px solid white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .color-btn:hover {
-            transform: scale(1.3);
-        }
-
-        .balloon-container {
-            height: 400px;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(to bottom, #87ceeb, #e0f6ff);
-            border-radius: 30px;
-            margin: 20px 0;
-            box-shadow: inset 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .balloon {
-            position: absolute;
-            width: 60px;
-            height: 80px;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            cursor: pointer;
-            animation: floatUp 6s linear;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
-        }
-
-        @keyframes floatUp {
-            from { bottom: -100px; opacity: 1; }
-            to { bottom: 110%; opacity: 0.8; }
-        }
-
-        #drawingCanvas {
-            border: 5px solid #667eea;
-            border-radius: 20px;
-            cursor: crosshair;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            background: white;
-            display: block;
-            margin: 20px auto;
-            max-width: 100%;
-            touch-action: none;
-        }
-
-        .color-palette {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .palette-color {
-            width: clamp(40px, 10vw, 60px);
-            height: clamp(40px, 10vw, 60px);
-            border-radius: 50%;
-            cursor: pointer;
-            border: 3px solid white;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .palette-color:hover, .palette-color.active {
-            transform: scale(1.2);
-            border-color: #667eea;
-        }
-
-        .sound-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 2em;
-            cursor: pointer;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .sound-toggle:hover {
-            transform: scale(1.1) rotate(15deg);
-        }
-
-        .simon-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            max-width: 400px;
-            margin: 30px auto;
-        }
-
-        .simon-btn {
-            aspect-ratio: 1;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 5px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .simon-btn.flash {
-            filter: brightness(1.8);
-            transform: scale(0.95);
-        }
-
-        /* Subscription Page Styles */
-        .subscription-page {
-            display: none;
-            padding: 40px 20px;
-        }
-
-        .subscription-page.active {
-            display: block;
-        }
-
-        .subscription-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .subscription-header h1 {
-            font-size: clamp(2.5em, 6vw, 4em);
-            margin-bottom: 20px;
-        }
-
-        .subscription-header p {
-            font-size: clamp(1.2em, 3vw, 1.8em);
-            color: white;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .pricing-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 30px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s ease;
-            border: 3px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
-        }
-
-        .pricing-card.featured {
-            border: 5px solid #f093fb;
-            transform: scale(1.05);
-        }
-
-        .plan-badge {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .plan-name {
-            font-size: 2.5em;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-        .plan-price {
-            font-size: 3.5em;
-            color: #667eea;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        .plan-price span {
-            font-size: 0.4em;
-            color: #999;
-        }
-
-        .plan-features {
-            list-style: none;
-            padding: 0;
-            margin: 30px 0;
-            text-align: left;
-        }
-
-        .plan-features li {
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
-            color: #555;
-            font-size: 1.1em;
-        }
-
-        .plan-features li:before {
-            content: "✓ ";
-            color: #4ecdc4;
-            font-weight: bold;
-            font-size: 1.3em;
-            margin-right: 10px;
-        }
-
-        .subscribe-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            border: none;
-            padding: 18px;
-            font-size: 1.3em;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.5);
-            transition: all 0.3s ease;
-            font-family: inherit;
-            margin-top: 20px;
-        }
-
-        .subscribe-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.7);
-        }
-
-        /* About Us Page Styles */
-        .about-page {
-            display: none;
-            padding: 40px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .about-page.active {
-            display: block;
-        }
-
-        .about-content {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 40px;
-            padding: 50px 40px;
-            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
-            border: 3px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .about-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .about-header h1 {
-            font-size: clamp(2.5em, 6vw, 4em);
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-        }
-
-        .about-section {
-            margin: 30px 0;
-        }
-
-        .about-section h2 {
-            color: #667eea;
-            font-size: 2em;
-            margin-bottom: 15px;
-        }
-
-        .about-section p {
-            color: #555;
-            font-size: 1.2em;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .creator-card {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            border-radius: 30px;
-            padding: 30px;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        .creator-card h3 {
-            font-size: 2em;
-            margin-bottom: 15px;
-        }
-
-        .creator-card p {
-            font-size: 1.3em;
-            color: white;
-            margin: 10px 0;
-        }
-
-        .contact-info {
-            background: rgba(102, 126, 234, 0.1);
-            border-radius: 20px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-
-        .contact-info h3 {
-            color: #667eea;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-
-        .contact-info p {
-            font-size: 1.2em;
-            color: #555;
-            margin: 10px 0;
-        }
-
-        .back-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.2em;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
-            transition: all 0.3s ease;
-            font-family: inherit;
-            display: block;
-            margin: 30px auto 0;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.7);
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: 'Times New Roman', Times, serif; 
+            background: linear-gradient(270deg, #ff6b6b, #4ecdc4, #45b7d1, #f093fb, #667eea, #764ba2); 
+            background-size: 1200% 1200%; 
+            min-height: 100vh; 
+            animation: rainbowGradient 15s ease infinite; 
+        }
+        @keyframes rainbowGradient { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes floatUp { from { bottom: -100px; opacity: 1; } to { bottom: 110%; opacity: 0; } }
+        
+        .login-container { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .login-box { background: rgba(255,255,255,0.95); border-radius: 40px; padding: 40px; max-width: 450px; width: 100%; box-shadow: 0 30px 90px rgba(0,0,0,0.3); animation: slideUp 0.8s; }
+        .login-logo { text-align: center; font-size: 4em; margin-bottom: 20px; animation: bounce 2s infinite; }
+        .login-title { text-align: center; font-size: 2.5em; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; font-weight: bold; }
+        .login-subtitle { text-align: center; color: #666; margin-bottom: 30px; font-size: 1.1em; }
+        .input-group { margin-bottom: 20px; }
+        .input-label { display: block; margin-bottom: 8px; color: #667eea; font-weight: bold; font-size: 1.1em; }
+        .input-field { width: 100%; padding: 15px 20px; border: 3px solid #e0e0e0; border-radius: 20px; font-size: 1.1em; font-family: 'Times New Roman', Times, serif; transition: all 0.3s; }
+        .input-field:focus { outline: none; border-color: #667eea; box-shadow: 0 0 20px rgba(102,126,234,0.3); }
+        .login-btn { width: 100%; background: linear-gradient(135deg, #f093fb, #f5576c); color: white; border: none; padding: 18px; font-size: 1.4em; border-radius: 25px; cursor: pointer; font-weight: bold; box-shadow: 0 10px 30px rgba(245,87,108,0.5); transition: all 0.3s; font-family: 'Times New Roman', Times, serif; }
+        .login-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(245,87,108,0.7); }
+        .welcome-text { text-align: center; margin-top: 20px; color: #667eea; font-size: 1em; }
+        
+        .container { max-width: 1600px; margin: 0 auto; padding: 20px; display: none; }
+        .container.active { display: block; }
+        header { text-align: center; padding: 40px; background: rgba(255,255,255,0.15); backdrop-filter: blur(15px); border-radius: 40px; margin-bottom: 40px; box-shadow: 0 15px 50px rgba(0,0,0,0.3); }
+        h1 { font-size: 4em; color: white; text-shadow: 0 0 20px rgba(255,255,255,0.8); margin-bottom: 15px; }
+        .subtitle { font-size: 1.8em; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.8); }
+        
+        .user-info { position: fixed; top: 10px; left: 10px; background: rgba(255,255,255,0.3); backdrop-filter: blur(10px); padding: 15px 20px; border-radius: 20px; color: white; font-weight: bold; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: none; }
+        .logout-btn { background: linear-gradient(135deg, #f5576c, #ff6b6b); color: white; border: none; padding: 8px 15px; border-radius: 15px; cursor: pointer; font-weight: bold; margin-left: 8px; font-family: 'Times New Roman', Times, serif; }
+        
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 20px; }
+        .game-card { background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85)); border-radius: 30px; padding: 30px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transition: all 0.4s; cursor: pointer; }
+        .game-card:hover { transform: translateY(-15px) scale(1.05); box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
+        .game-icon { font-size: 5em; margin-bottom: 20px; }
+        .game-title { font-size: 2em; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; font-weight: bold; }
+        .game-description { font-size: 1.1em; color: #555; margin-bottom: 20px; }
+        .play-btn { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; border: none; padding: 15px 35px; font-size: 1.3em; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 10px 30px rgba(245,87,108,0.5); font-family: 'Times New Roman', Times, serif; transition: all 0.3s; }
+        .play-btn:hover { transform: scale(1.15); }
+        
+        .game-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 10px; overflow-y: auto; }
+        .game-content { background: #fff; border-radius: 40px; padding: 40px; max-width: 700px; width: 95%; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 90px rgba(0,0,0,0.5); position: relative; }
+        .close-btn { position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, #f5576c, #ff6b6b); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 1.8em; cursor: pointer; transition: all 0.3s; }
+        .close-btn:hover { transform: scale(1.1); }
+        .score { font-size: 1.8em; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; margin: 20px 0; text-align: center; }
+        
+        .memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 20px 0; }
+        .memory-card { aspect-ratio: 1; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 3em; cursor: pointer; transition: all 0.3s; }
+        .memory-card.flipped { background: white; }
+        
+        .quiz-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0; }
+        .quiz-option { padding: 20px; font-size: 1.5em; background: linear-gradient(135deg, #f093fb, #f5576c); color: white; border: none; border-radius: 20px; cursor: pointer; font-weight: bold; font-family: 'Times New Roman', Times, serif; transition: all 0.3s; }
+        .quiz-option:hover { transform: scale(1.05); }
+        
+        .color-display { width: 250px; height: 250px; border-radius: 30px; margin: 20px auto; box-shadow: 0 15px 50px rgba(0,0,0,0.3); transition: all 0.5s; }
+        .color-buttons { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 20px; }
+        .color-btn { width: 70px; height: 70px; border-radius: 50%; border: 5px solid white; cursor: pointer; box-shadow: 0 8px 25px rgba(0,0,0,0.3); transition: all 0.3s; }
+        .color-btn:hover { transform: scale(1.2); }
+        
+        .balloon-container { height: 400px; position: relative; overflow: hidden; background: linear-gradient(to bottom, #87ceeb, #e0f6ff); border-radius: 30px; margin: 20px 0; }
+        .balloon { position: absolute; width: 60px; height: 80px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; cursor: pointer; animation: floatUp 6s linear; }
+        
+        .board-cell { aspect-ratio: 1; background: white; display: flex; align-items: center; justify-content: center; font-size: 0.9em; font-weight: bold; border-radius: 5px; position: relative; }
+        .player-token { width: 20px; height: 20px; border-radius: 50%; position: absolute; border: 2px solid white; }
+        .dice { width: 80px; height: 80px; background: white; border: 3px solid #333; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 2.5em; font-weight: bold; margin: 20px auto; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.3s; }
+        .dice:hover { transform: scale(1.1) rotate(5deg); }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            .subtitle { font-size: 1.2em; }
+            .games-grid { grid-template-columns: 1fr; }
+            .game-content { padding: 20px; }
+            .close-btn { width: 40px; height: 40px; font-size: 1.5em; }
         }
     </style>
 </head>
 <body>
-    <script>
-        for(let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.width = Math.random() * 20 + 10 + 'px';
-            particle.style.height = particle.style.width;
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 20 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
-            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f093fb', '#feca57', '#ff9ff3'];
-            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-            document.body.appendChild(particle);
-        }
-    </script>
-
-    <!-- Login Page -->
     <div class="login-container" id="loginPage">
         <div class="login-box">
             <div class="login-logo">🎮</div>
             <h1 class="login-title">KidzFun Games</h1>
             <p class="login-subtitle">Welcome! Let's Play & Learn! 🌟</p>
-            
             <div class="input-group">
                 <label class="input-label">👤 Your Name:</label>
                 <input type="text" id="username" class="input-field" placeholder="Enter your name..." maxlength="20">
             </div>
-            
             <div class="input-group">
                 <label class="input-label">🎂 Your Age:</label>
                 <input type="number" id="userage" class="input-field" placeholder="How old are you?" min="1" max="99">
             </div>
-            
             <button class="login-btn" onclick="login()">Start Playing! 🚀</button>
-            
-            <p class="welcome-text">✨ 15 amazing games waiting for you! ✨</p>
-            
-            <div class="login-links">
-                <a href="#" class="login-link" onclick="showSubscription(); return false;">💎 Subscribe</a>
-                <a href="#" class="login-link" onclick="showAbout(); return false;">ℹ️ About Us</a>
-            </div>
+            <p class="welcome-text">✨ 18 amazing games waiting for you! ✨</p>
         </div>
     </div>
-
-    <!-- Sound Toggle (Hidden until logged in) -->
-    <div class="sound-toggle" onclick="toggleSound()" id="soundToggle" style="display: none;">🔊</div>
-
-    <!-- User Info (Hidden until logged in) -->
-    <div class="user-info" id="userInfo" style="display: none;">
-        <span id="userDisplay">👋 Hi, User!</span>
+    
+    <div class="user-info" id="userInfo">
+        <span id="userDisplay">👋 Hi!</span>
         <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
-
-    <!-- Navigation Menu (Hidden until logged in) -->
-    <div class="nav-menu" id="navMenu">
-        <button class="nav-btn" onclick="showGames()">🎮 Games</button>
-        <button class="nav-btn" onclick="showSubscription()">💎 Subscribe</button>
-        <button class="nav-btn" onclick="showAbout()">ℹ️ About</button>
-    </div>
-
-    <!-- Main Game Container -->
+    
     <div class="container" id="mainContainer">
         <header>
             <h1>🎮 KidzFun Games 🎨</h1>
-            <p class="subtitle">✨ 15 Amazing Games to Play & Learn! ✨</p>
+            <p class="subtitle">✨ 18 Amazing Games to Play & Learn! ✨</p>
         </header>
-
         <div class="games-grid">
             <div class="game-card" onclick="openGame('memory')">
                 <div class="game-icon">🧠</div>
                 <h2 class="game-title">Memory Cards</h2>
-                <p class="game-description">Match emoji pairs! Test your memory!</p>
+                <p class="game-description">Match emoji pairs!</p>
                 <button class="play-btn">Play Now!</button>
             </div>
-
             <div class="game-card" onclick="openGame('math')">
                 <div class="game-icon">🔢</div>
                 <h2 class="game-title">Math Quiz</h2>
-                <p class="game-description">Solve fun math problems!</p>
+                <p class="game-description">Solve math problems!</p>
                 <button class="play-btn">Play Now!</button>
             </div>
-
             <div class="game-card" onclick="openGame('color')">
                 <div class="game-icon">🎨</div>
                 <h2 class="game-title">Color Mixer</h2>
                 <p class="game-description">Mix beautiful colors!</p>
                 <button class="play-btn">Play Now!</button>
             </div>
-
             <div class="game-card" onclick="openGame('balloon')">
                 <div class="game-icon">🎈</div>
                 <h2 class="game-title">Balloon Pop</h2>
                 <p class="game-description">Pop balloons fast!</p>
                 <button class="play-btn">Play Now!</button>
             </div>
-
-            <div class="game-card" onclick="openGame('drawing')">
-                <div class="game-icon">✏️</div>
-                <h2 class="game-title">Drawing Board</h2>
-                <p class="game-description">Draw anything you want!</p>
-                <button class="play-btn">Play Now!</button>
-            </div>
-
-            <div class="game-card" onclick="openGame('simon')">
-                <div class="game-icon">🎵</div>
-                <h2 class="game-title">Simon Says</h2>
-                <p class="game-description">Follow the pattern!</p>
-                <button class="play-btn">Play Now!</button>
-            </div>
-
             <div class="game-card" onclick="openGame('counting')">
                 <div class="game-icon">🔢</div>
                 <h2 class="game-title">Count & Learn</h2>
-                <p class="game-description">Count the objects!</p>
+                <p class="game-description">Count objects!</p>
                 <button class="play-btn">Play Now!</button>
             </div>
-
             <div class="game-card" onclick="openGame('alphabet')">
                 <div class="game-icon">🔤</div>
                 <h2 class="game-title">Alphabet Match</h2>
                 <p class="game-description">Learn your ABC!</p>
                 <button class="play-btn">Play Now!</button>
             </div>
-
             <div class="game-card" onclick="openGame('shapes')">
                 <div class="game-icon">🔷</div>
                 <h2 class="game-title">Shape Sorter</h2>
                 <p class="game-description">Learn shapes!</p>
                 <button class="play-btn">Play Now!</button>
             </div>
-
-            <div class="game-card" onclick="openGame('whack')">
-                <div class="game-icon">🔨</div>
-                <h2 class="game-title">Whack-a-Mole</h2>
-                <p class="game-description">Tap the moles!</p>
-                <button class="play-btn">Play Now!</button>
-            </div>
-
-            <div class="game-card" onclick="openGame('catcher')">
-                <div class="game-icon">🍎</div>
-                <h2 class="game-title">Fruit Catcher</h2>
-                <p class="game-description">Catch falling fruits!</p>
-                <button class="play-btn">Play Now!</button>
-            </div>
-
-            <div class="game-card" onclick="openGame('tictactoe')">
-                <div class="game-icon">❌</div>
-                <h2 class="game-title">Tic Tac Toe</h2>
-                <p class="game-description">Beat the computer!</p>
-                <button class="play-btn">Play Now!</button>
-            </div>
-
             <div class="game-card" onclick="openGame('animals')">
                 <div class="game-icon">🐶</div>
                 <h2 class="game-title">Animal Sounds</h2>
                 <p class="game-description">Learn animal sounds!</p>
                 <button class="play-btn">Play Now!</button>
             </div>
-
             <div class="game-card" onclick="openGame('pattern')">
                 <div class="game-icon">🎯</div>
                 <h2 class="game-title">Pattern Match</h2>
                 <p class="game-description">Complete patterns!</p>
                 <button class="play-btn">Play Now!</button>
             </div>
-
             <div class="game-card" onclick="openGame('puzzle')">
                 <div class="game-icon">🧩</div>
                 <h2 class="game-title">Puzzle Game</h2>
                 <p class="game-description">Solve the puzzle!</p>
                 <button class="play-btn">Play Now!</button>
             </div>
+            <div class="game-card" onclick="openGame('tictactoe')">
+                <div class="game-icon">❌</div>
+                <h2 class="game-title">Tic Tac Toe</h2>
+                <p class="game-description">Beat the computer!</p>
+                <button class="play-btn">Play Now!</button>
+            </div>
+            <div class="game-card" onclick="openGame('snakeladder')">
+                <div class="game-icon">🐍</div>
+                <h2 class="game-title">Snake & Ladder</h2>
+                <p class="game-description">Classic board game!</p>
+                <button class="play-btn">Play Now!</button>
+            </div>
+            <div class="game-card" onclick="openGame('ludo')">
+                <div class="game-icon">🎲</div>
+                <h2 class="game-title">Ludo</h2>
+                <p class="game-description">Play Ludo game!</p>
+                <button class="play-btn">Play Now!</button>
+            </div>
+            <div class="game-card" onclick="openGame('simon')">
+                <div class="game-icon">🎵</div>
+                <h2 class="game-title">Simon Says</h2>
+                <p class="game-description">Follow the pattern!</p>
+                <button class="play-btn">Play Now!</button>
+            </div>
+            <div class="game-card" onclick="openGame('whack')">
+                <div class="game-icon">🔨</div>
+                <h2 class="game-title">Whack-a-Mole</h2>
+                <p class="game-description">Tap the moles!</p>
+                <button class="play-btn">Play Now!</button>
+            </div>
+            <div class="game-card" onclick="openGame('guess')">
+                <div class="game-icon">🤔</div>
+                <h2 class="game-title">Guess Number</h2>
+                <p class="game-description">Guess the number!</p>
+                <button class="play-btn">Play Now!</button>
+            </div>
+            <div class="game-card" onclick="openGame('catch')">
+                <div class="game-icon">🍎</div>
+                <h2 class="game-title">Fruit Catch</h2>
+                <p class="game-description">Catch the fruits!</p>
+                <button class="play-btn">Play Now!</button>
+            </div>
+            <div class="game-card" onclick="openGame('connect')">
+                <div class="game-icon">🔴</div>
+                <h2 class="game-title">Connect Four</h2>
+                <p class="game-description">Connect 4 in a row!</p>
+                <button class="play-btn">Play Now!</button>
+            </div>
         </div>
     </div>
-
-    <!-- Subscription Page -->
-    <div class="subscription-page" id="subscriptionPage">
-        <div class="subscription-header">
-            <h1>💎 Premium Subscription Plans 💎</h1>
-            <p>Unlock unlimited fun and learning!</p>
-        </div>
-
-        <div class="pricing-cards">
-            <div class="pricing-card">
-                <div class="plan-name">🌟 Basic</div>
-                <div class="plan-price">$4.99<span>/month</span></div>
-                <ul class="plan-features">
-                    <li>Access to 5 games</li>
-                    <li>Basic sound effects</li>
-                    <li>Standard support</li>
-                    <li>No ads</li>
-                </ul>
-                <button class="subscribe-btn" onclick="subscribe('Basic')">Choose Basic</button>
-            </div>
-
-            <div class="pricing-card featured">
-                <div class="plan-badge">⭐ MOST POPULAR</div>
-                <div class="plan-name">🎮 Premium</div>
-                <div class="plan-price">$9.99<span>/month</span></div>
-                <ul class="plan-features">
-                    <li>Access to all 15 games</li>
-                    <li>Premium sound effects</li>
-                    <li>Priority support</li>
-                    <li>No ads</li>
-                    <li>Progress tracking</li>
-                    <li>Exclusive content</li>
-                </ul>
-                <button class="subscribe-btn" onclick="subscribe('Premium')">Choose Premium</button>
-            </div>
-
-            <div class="pricing-card">
-                <div class="plan-name">👑 Family</div>
-                <div class="plan-price">$14.99<span>/month</span></div>
-                <ul class="plan-features">
-                    <li>All Premium features</li>
-                    <li>Up to 5 kids profiles</li>
-                    <li>Parental controls</li>
-                    <li>Monthly reports</li>
-                    <li>Priority support</li>
-                    <li>Family dashboard</li>
-                </ul>
-                <button class="subscribe-btn" onclick="subscribe('Family')">Choose Family</button>
-            </div>
-        </div>
-
-        <button class="back-btn" onclick="goBackToLogin()">← Back to Login</button>
-    </div>
-
-    <!-- About Us Page -->
-    <div class="about-page" id="aboutPage">
-        <div class="about-content">
-            <div class="about-header">
-                <h1>🌟 About KidzFun Games 🌟</h1>
-            </div>
-
-            <div class="about-section">
-                <h2>Our Mission 🎯</h2>
-                <p>
-                    KidzFun Games is dedicated to making learning fun and engaging for children of all ages. 
-                    We believe that education and entertainment should go hand in hand, creating memorable 
-                    experiences that help kids develop important skills while having a blast!
-                </p>
-            </div>
-
-            <div class="about-section">
-                <h2>What We Offer 🎮</h2>
-                <p>
-                    Our platform features 15 carefully designed educational games that cover various 
-                    learning areas including mathematics, memory skills, creativity, pattern recognition, 
-                    and much more. Each game is crafted with colorful graphics, engaging sounds, and 
-                    age-appropriate challenges.
-                </p>
-            </div>
-
-            <div class="creator-card">
-                <h3>👨‍💻 Created By</h3>
-                <p><strong>Parmar Adarsh</strong></p>
-                <p>🎨 Game Designer & Developer</p>
-            </div>
-
-            <div class="contact-info">
-                <h3>📧 Contact Us</h3>
-                <p><strong>Email:</strong> adarshk7@gmail.com</p>
-                <p>We'd love to hear from you! Whether you have questions, suggestions, or just want to share 
-                   how much fun your kids are having, feel free to reach out.</p>
-            </div>
-
-            <div class="about-section">
-                <h2>Why Choose KidzFun? 💡</h2>
-                <p>
-                    ✨ <strong>Educational:</strong> Each game is designed to develop specific skills<br>
-                    🎨 <strong>Colorful & Engaging:</strong> Beautiful animations and sounds<br>
-                    👶 <strong>Kid-Friendly:</strong> Safe, age-appropriate content<br>
-                    🚀 <strong>No Installation:</strong> Play directly in your browser<br>
-                    📱 <strong>Responsive:</strong> Works on all devices
-                </p>
-            </div>
-
-            <div class="about-section">
-                <h2>Our Values ❤️</h2>
-                <p>
-                    We are committed to creating a safe, inclusive, and positive environment where every 
-                    child can learn, play, and grow. Privacy and safety are our top priorities, and we 
-                    continuously work to improve our games based on feedback from parents and educators.
-                </p>
-            </div>
-
-            <button class="back-btn" onclick="goBackToLogin()">← Back to Login</button>
-        </div>
-    </div>
-
-    <!-- Game Modal -->
+    
     <div class="game-modal" id="gameModal">
         <div class="game-content">
             <button class="close-btn" onclick="closeGame()">×</button>
             <h2 id="gameTitle" style="color: #667eea; text-align: center; font-size: 2em; margin-bottom: 20px;"></h2>
-            <div class="game-area" id="gameArea"></div>
+            <div id="gameArea"></div>
         </div>
     </div>
-
+    
     <script>
-        let soundEnabled = true;
-        let currentGame = null;
+        let currentUser = {name: '', age: ''};
         let gameData = {};
-        let currentUser = { name: '', age: '' };
+        
+        // Enhanced Sound Effects System
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-        // Page Navigation Functions
-        function showGames() {
-            playSound('click');
-            document.getElementById('mainContainer').classList.add('active');
-            document.getElementById('subscriptionPage').classList.remove('active');
-            document.getElementById('aboutPage').classList.remove('active');
-        }
-
-        function showSubscription() {
-            playSound('click');
-            document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('mainContainer').classList.remove('active');
-            document.getElementById('subscriptionPage').classList.add('active');
-            document.getElementById('aboutPage').classList.remove('active');
-        }
-
-        function showAbout() {
-            playSound('click');
-            document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('mainContainer').classList.remove('active');
-            document.getElementById('subscriptionPage').classList.remove('active');
-            document.getElementById('aboutPage').classList.add('active');
-        }
-
-        function goBackToLogin() {
-            playSound('click');
-            document.getElementById('loginPage').style.display = 'flex';
-            document.getElementById('mainContainer').classList.remove('active');
-            document.getElementById('subscriptionPage').classList.remove('active');
-            document.getElementById('aboutPage').classList.remove('active');
-            document.getElementById('soundToggle').style.display = 'none';
-            document.getElementById('userInfo').style.display = 'none';
-            document.getElementById('navMenu').classList.remove('active');
-        }
-
-        function subscribe(plan) {
-            playSound('win');
-            alert(`🎉 Thank you for choosing the ${plan} plan!\n\n📧 Please contact us at:\nadarshk7@gmail.com\n\nWe'll help you get started right away!`);
-        }
-
-        // Login Function
-        function login() {
-            const username = document.getElementById('username').value.trim();
-            const userage = document.getElementById('userage').value;
-            
-            if (!username) {
-                playSound('error');
-                alert('Please enter your name! 😊');
-                return;
-            }
-            
-            if (!userage || userage < 1) {
-                playSound('error');
-                alert('Please enter your age! 🎂');
-                return;
-            }
-            
-            playSound('win');
-            currentUser = { name: username, age: userage };
-            
-            document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('mainContainer').classList.add('active');
-            document.getElementById('soundToggle').style.display = 'flex';
-            document.getElementById('userInfo').style.display = 'block';
-            document.getElementById('navMenu').classList.add('active');
-            document.getElementById('userDisplay').textContent = `👋 Hi, ${username}! (Age: ${userage})`;
-        }
-
-        // Logout Function
-        function logout() {
-            playSound('click');
-            if (confirm('Are you sure you want to logout? 👋')) {
-                document.getElementById('loginPage').style.display = 'flex';
-                document.getElementById('mainContainer').classList.remove('active');
-                document.getElementById('subscriptionPage').classList.remove('active');
-                document.getElementById('aboutPage').classList.remove('active');
-                document.getElementById('soundToggle').style.display = 'none';
-                document.getElementById('userInfo').style.display = 'none';
-                document.getElementById('navMenu').classList.remove('active');
-                document.getElementById('username').value = '';
-                document.getElementById('userage').value = '';
-                currentUser = { name: '', age: '' };
-                closeGame();
-            }
-        }
-
-        // Enter key support for login
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('username').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') login();
-            });
-            document.getElementById('userage').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') login();
-            });
-        });
-
+        
         function playSound(type) {
-            if (!soundEnabled) return;
-            
             const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
+            
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
             
             switch(type) {
-                case 'click':
-                    oscillator.frequency.value = 800;
-                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                case 'pop': // Balloon pop
+                    oscillator.type = 'sine';
+                    oscillator.frequency.value = 300;
+                    gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
                     oscillator.start(audioContext.currentTime);
-                    oscillator.stop(audioContext.currentTime + 0.1);
+                    oscillator.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 0.05);
+                    oscillator.stop(audioContext.currentTime + 0.15);
                     break;
-                case 'success':
+                case 'correct': // Correct answer
+                    oscillator.type = 'sine';
                     oscillator.frequency.value = 523.25;
                     gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-                    oscillator.frequency.exponentialRampToValueAtTime(783.99, audioContext.currentTime + 0.3);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
                     oscillator.start(audioContext.currentTime);
-                    oscillator.stop(audioContext.currentTime + 0.3);
+                    oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1);
+                    oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2);
+                    oscillator.stop(audioContext.currentTime + 0.4);
                     break;
-                case 'error':
-                    oscillator.frequency.value = 200;
+                case 'wrong': // Wrong answer
+                    oscillator.type = 'triangle';
+                    oscillator.frequency.value = 400;
                     gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
                     oscillator.start(audioContext.currentTime);
-                    oscillator.stop(audioContext.currentTime + 0.2);
+                    oscillator.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.3);
+                    oscillator.stop(audioContext.currentTime + 0.4);
                     break;
-                case 'pop':
-                    oscillator.frequency.value = 1000;
-                    gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
-                    oscillator.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 0.1);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                case 'click': // Button click
+                    oscillator.type = 'square';
+                    oscillator.frequency.value = 800;
+                    gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
                     oscillator.start(audioContext.currentTime);
-                    oscillator.stop(audioContext.currentTime + 0.1);
+                    oscillator.stop(audioContext.currentTime + 0.05);
                     break;
-                case 'win':
-                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                case 'match': // Memory card match
+                    oscillator.type = 'sine';
+                    oscillator.frequency.value = 659.25;
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.15);
+                    oscillator.frequency.setValueAtTime(1046.50, audioContext.currentTime + 0.3);
+                    oscillator.stop(audioContext.currentTime + 0.5);
+                    break;
+                case 'flip': // Card flip
+                    oscillator.type = 'sawtooth';
+                    oscillator.frequency.value = 400;
+                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.08);
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.08);
+                    oscillator.stop(audioContext.currentTime + 0.08);
+                    break;
+                case 'win': // Game win
+                    const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
                     notes.forEach((freq, i) => {
                         const osc = audioContext.createOscillator();
                         const gain = audioContext.createGain();
+                        osc.type = 'sine';
                         osc.connect(gain);
                         gain.connect(audioContext.destination);
                         osc.frequency.value = freq;
-                        gain.gain.setValueAtTime(0.2, audioContext.currentTime + i * 0.15);
-                        gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + i * 0.15 + 0.3);
-                        osc.start(audioContext.currentTime + i * 0.15);
-                        osc.stop(audioContext.currentTime + i * 0.15 + 0.3);
+                        gain.gain.setValueAtTime(0.25, audioContext.currentTime + i * 0.12);
+                        gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + i * 0.12 + 0.3);
+                        osc.start(audioContext.currentTime + i * 0.12);
+                        osc.stop(audioContext.currentTime + i * 0.12 + 0.3);
                     });
+                    return;
+                case 'whack': // Whack-a-mole hit
+                    oscillator.type = 'triangle';
+                    oscillator.frequency.value = 180;
+                    gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.12);
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(80, audioContext.currentTime + 0.08);
+                    oscillator.stop(audioContext.currentTime + 0.12);
+                    break;
+                case 'dice': // Dice roll
+                    for (let i = 0; i < 5; i++) {
+                        const osc = audioContext.createOscillator();
+                        const gain = audioContext.createGain();
+                        osc.type = 'square';
+                        osc.connect(gain);
+                        gain.connect(audioContext.destination);
+                        osc.frequency.value = 200 + Math.random() * 200;
+                        gain.gain.setValueAtTime(0.1, audioContext.currentTime + i * 0.05);
+                        gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + i * 0.05 + 0.05);
+                        osc.start(audioContext.currentTime + i * 0.05);
+                        osc.stop(audioContext.currentTime + i * 0.05 + 0.05);
+                    }
+                    return;
+                case 'catch': // Fruit catch
+                    oscillator.type = 'sine';
+                    oscillator.frequency.value = 400;
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.1);
+                    oscillator.stop(audioContext.currentTime + 0.15);
+                    break;
+                case 'move': // Game piece move
+                    oscillator.type = 'sine';
+                    oscillator.frequency.value = 300;
+                    gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.frequency.linearRampToValueAtTime(350, audioContext.currentTime + 0.1);
+                    oscillator.stop(audioContext.currentTime + 0.1);
                     break;
             }
         }
-
-        function toggleSound() {
-            soundEnabled = !soundEnabled;
-            document.getElementById('soundToggle').textContent = soundEnabled ? '🔊' : '🔇';
-            playSound('click');
+        
+        function login() {
+            const username = document.getElementById('username').value.trim();
+            const age = document.getElementById('userage').value;
+            
+            if (!username) {
+                alert('Please enter your name! 😊');
+                return;
+            }
+            if (!age || age < 1) {
+                alert('Please enter your age! 🎂');
+                return;
+            }
+            
+            playSound('correct');
+            currentUser = {name: username, age: age};
+            
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('mainContainer').classList.add('active');
+            document.getElementById('userInfo').style.display = 'block';
+            document.getElementById('userDisplay').textContent = `👋 Hi, ${username}!`;
         }
-
+        
+        function logout() {
+            if (confirm('Do you want to logout? 👋')) {
+                playSound('click');
+                document.getElementById('loginPage').style.display = 'flex';
+                document.getElementById('mainContainer').classList.remove('active');
+                document.getElementById('userInfo').style.display = 'none';
+                document.getElementById('username').value = '';
+                document.getElementById('userage').value = '';
+                currentUser = {name: '', age: ''};
+                closeGame();
+            }
+        }
+        
         function openGame(gameType) {
             playSound('click');
-            const modal = document.getElementById('gameModal');
-            modal.style.display = 'flex';
-            currentGame = gameType;
+            document.getElementById('gameModal').style.display = 'flex';
             
             const games = {
-                'memory': { title: '🧠 Memory Cards', init: initMemoryGame },
-                'math': { title: '🔢 Math Quiz', init: initMathGame },
-                'color': { title: '🎨 Color Mixer', init: initColorGame },
-                'balloon': { title: '🎈 Balloon Pop', init: initBalloonGame },
-                'drawing': { title: '✏️ Drawing Board', init: initDrawingGame },
-                'simon': { title: '🎵 Simon Says', init: initSimonGame },
-                'counting': { title: '🔢 Count & Learn', init: initCountingGame },
-                'alphabet': { title: '🔤 Alphabet Match', init: initAlphabetGame },
-                'shapes': { title: '🔷 Shape Sorter', init: initShapesGame },
-                'whack': { title: '🔨 Whack-a-Mole', init: initWhackGame },
-                'catcher': { title: '🍎 Fruit Catcher', init: initCatcherGame },
-                'tictactoe': { title: '❌ Tic Tac Toe', init: initTicTacToeGame },
-                'animals': { title: '🐶 Animal Sounds', init: initAnimalsGame },
-                'pattern': { title: '🎯 Pattern Match', init: initPatternGame },
-                'puzzle': { title: '🧩 Puzzle Game', init: initPuzzleGame }
+                memory: {title: '🧠 Memory Cards', init: initMemoryGame},
+                math: {title: '🔢 Math Quiz', init: initMathGame},
+                color: {title: '🎨 Color Mixer', init: initColorGame},
+                balloon: {title: '🎈 Balloon Pop', init: initBalloonGame},
+                counting: {title: '🔢 Count & Learn', init: initCountingGame},
+                alphabet: {title: '🔤 Alphabet Match', init: initAlphabetGame},
+                shapes: {title: '🔷 Shape Sorter', init: initShapesGame},
+                animals: {title: '🐶 Animal Sounds', init: initAnimalsGame},
+                pattern: {title: '🎯 Pattern Match', init: initPatternGame},
+                puzzle: {title: '🧩 Puzzle Game', init: initPuzzleGame},
+                tictactoe: {title: '❌ Tic Tac Toe', init: initTicTacToeGame},
+                snakeladder: {title: '🐍 Snake & Ladder', init: initSnakeLadderGame},
+                ludo: {title: '🎲 Ludo', init: initLudoGame},
+                simon: {title: '🎵 Simon Says', init: initSimonGame},
+                whack: {title: '🔨 Whack-a-Mole', init: initWhackGame},
+                guess: {title: '🤔 Guess Number', init: initGuessGame},
+                catch: {title: '🍎 Fruit Catch', init: initCatchGame},
+                connect: {title: '🔴 Connect Four', init: initConnectGame}
             };
             
             if (games[gameType]) {
@@ -1380,34 +428,39 @@
                 games[gameType].init();
             }
         }
-
+        
         function closeGame() {
             playSound('click');
             document.getElementById('gameModal').style.display = 'none';
             if (gameData.interval) clearInterval(gameData.interval);
             gameData = {};
         }
-
-        // 1. Memory Game
+        
+        function updateScore(text) {
+            const scoreEl = document.querySelector('.score');
+            if (scoreEl) scoreEl.textContent = text;
+        }
+        
+        // Memory Game
         function initMemoryGame() {
-            const emojis = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'];
+            const emojis = ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼'];
             const cards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
-            gameData = { cards, flipped: [], matches: 0 };
+            gameData = {cards, flipped: [], matches: 0};
             
-            let html = '<div class="score">Matches: 0 / 8</div><div class="memory-grid">';
+            let html = '<div class="score">Matches: 0/8</div><div class="memory-grid">';
             cards.forEach((emoji, i) => {
                 html += `<div class="memory-card" onclick="flipMemoryCard(${i})" id="mem-${i}">❓</div>`;
             });
             html += '</div>';
             document.getElementById('gameArea').innerHTML = html;
         }
-
+        
         function flipMemoryCard(index) {
             if (gameData.flipped.length >= 2) return;
             const card = document.getElementById(`mem-${index}`);
             if (card.classList.contains('flipped')) return;
             
-            playSound('click');
+            playSound('flip');
             card.textContent = gameData.cards[index];
             card.classList.add('flipped');
             gameData.flipped.push(index);
@@ -1416,17 +469,17 @@
                 setTimeout(() => {
                     const [i1, i2] = gameData.flipped;
                     if (gameData.cards[i1] === gameData.cards[i2]) {
-                        playSound('success');
+                        playSound('match');
                         gameData.matches++;
-                        document.querySelector('.score').textContent = `Matches: ${gameData.matches} / 8`;
+                        updateScore(`Matches: ${gameData.matches}/8`);
                         if (gameData.matches === 8) {
                             setTimeout(() => {
                                 playSound('win');
-                                alert(`🎉 Amazing ${currentUser.name}! You won!`);
+                                alert(`🎉 Amazing ${currentUser.name}! You matched all cards!`);
                             }, 300);
                         }
                     } else {
-                        playSound('error');
+                        playSound('wrong');
                         document.getElementById(`mem-${i1}`).textContent = '❓';
                         document.getElementById(`mem-${i1}`).classList.remove('flipped');
                         document.getElementById(`mem-${i2}`).textContent = '❓';
@@ -1436,79 +489,73 @@
                 }, 800);
             }
         }
-
-        // 2. Math Quiz
+        
+        // Math Quiz
         function initMathGame() {
-            gameData = { score: 0 };
+            gameData = {score: 0};
             showMathQuestion();
         }
-
+        
         function showMathQuestion() {
-            const num1 = Math.floor(Math.random() * 10) + 1;
-            const num2 = Math.floor(Math.random() * 10) + 1;
-            const operations = ['+', '-'];
-            const op = operations[Math.floor(Math.random() * operations.length)];
-            const correct = op === '+' ? num1 + num2 : Math.max(num1, num2) - Math.min(num1, num2);
-            
-            const wrong = [correct + 1, correct - 1, correct + 2, correct - 2].filter(a => a >= 0);
+            const n1 = Math.floor(Math.random() * 10) + 1;
+            const n2 = Math.floor(Math.random() * 10) + 1;
+            const ops = ['+', '-'];
+            const op = ops[Math.floor(Math.random() * ops.length)];
+            const correct = op === '+' ? n1 + n2 : Math.max(n1, n2) - Math.min(n1, n2);
+            const wrong = [correct + 1, correct - 1, correct + 2].filter(a => a >= 0 && a !== correct);
             const answers = [correct, ...wrong.slice(0, 3)].sort(() => Math.random() - 0.5);
             
-            let html = `
-                <div class="score">Score: ${gameData.score} 🌟</div>
-                <div class="quiz-question">${Math.max(num1, num2)} ${op} ${Math.min(num1, num2)} = ?</div>
-                <div class="quiz-options">
-            `;
-            answers.forEach(ans => {
-                html += `<button class="quiz-option" onclick="checkMathAnswer(${ans}, ${correct})">${ans}</button>`;
+            gameData.correctAnswer = correct;
+            
+            let html = `<div class="score">Score: ${gameData.score} 🌟</div>`;
+            html += `<div style="font-size:2.5em;color:#667eea;margin:30px 0;font-weight:bold;text-align:center;">${Math.max(n1, n2)} ${op} ${Math.min(n1, n2)} = ?</div>`;
+            html += '<div class="quiz-options">';
+            answers.forEach(a => {
+                html += `<button class="quiz-option" onclick="checkMathAnswer(${a})">${a}</button>`;
             });
             html += '</div>';
             document.getElementById('gameArea').innerHTML = html;
         }
-
-        function checkMathAnswer(selected, correct) {
-            if (selected === correct) {
-                playSound('success');
+        
+        function checkMathAnswer(selected) {
+            if (selected === gameData.correctAnswer) {
+                playSound('correct');
                 gameData.score++;
-                alert('🎉 Correct! Great job!');
+                alert('🎉 Correct!');
                 showMathQuestion();
             } else {
-                playSound('error');
-                alert('❌ Try again! The answer was ' + correct);
+                playSound('wrong');
+                alert('❌ Try again! The answer was ' + gameData.correctAnswer);
+                showMathQuestion();
             }
         }
-
-        // 3. Color Mixer
+        
+        // Color Mixer
         function initColorGame() {
-            const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2', '#F093FB', '#FF6348'];
-            let html = `
-                <div class="color-display" id="colorDisplay" style="background: ${colors[0]}"></div>
-                <div class="color-buttons">
-            `;
-            colors.forEach(color => {
-                html += `<button class="color-btn" style="background: ${color}" onclick="changeColor('${color}')"></button>`;
+            const colors = ['#FF6B6B','#4ECDC4','#45B7D1','#FFA07A','#98D8C8','#F7DC6F','#BB8FCE','#85C1E2'];
+            let html = `<div class="color-display" id="colorDisplay" style="background:${colors[0]}"></div>`;
+            html += '<div class="color-buttons">';
+            colors.forEach(c => {
+                html += `<button class="color-btn" style="background:${c}" onclick="changeColor('${c}')"></button>`;
             });
-            html += '</div><p style="text-align: center; margin-top: 20px; font-size: 1.3em; color: #667eea;">✨ Pick colors to paint! ✨</p>';
+            html += '</div><p style="text-align:center;margin-top:20px;font-size:1.3em;color:#667eea;">✨ Pick your favorite colors! ✨</p>';
             document.getElementById('gameArea').innerHTML = html;
         }
-
+        
         function changeColor(color) {
             playSound('click');
             document.getElementById('colorDisplay').style.background = color;
         }
-
-        // 4. Balloon Pop
+        
+        // Balloon Pop
         function initBalloonGame() {
-            gameData = { score: 0 };
-            const html = `
-                <div class="score">Balloons Popped: 0 🎈</div>
-                <div class="balloon-container" id="balloonContainer"></div>
-            `;
-            document.getElementById('gameArea').innerHTML = html;
+            gameData = {score: 0};
+            document.getElementById('gameArea').innerHTML = '<div class="score">Balloons: 0 🎈</div><div class="balloon-container" id="balloonContainer"></div>';
             gameData.interval = setInterval(createBalloon, 1200);
         }
-
+        
         function createBalloon() {
-            const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F'];
+            const colors = ['#FF6B6B','#4ECDC4','#45B7D1','#FFA07A','#98D8C8','#F7DC6F'];
             const container = document.getElementById('balloonContainer');
             if (!container) return;
             
@@ -1516,191 +563,690 @@
             balloon.className = 'balloon';
             balloon.style.left = Math.random() * (container.offsetWidth - 60) + 'px';
             balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
-            
             balloon.onclick = function() {
                 playSound('pop');
                 this.style.animation = 'none';
                 this.style.transform = 'scale(0)';
                 setTimeout(() => this.remove(), 200);
                 gameData.score++;
-                document.querySelector('.score').textContent = `Balloons Popped: ${gameData.score} 🎈`;
+                updateScore(`Balloons: ${gameData.score} 🎈`);
             };
-            
             container.appendChild(balloon);
             setTimeout(() => balloon.remove(), 6000);
         }
-
-        // 5. Drawing Board
-        function initDrawingGame() {
-            const colors = ['#000000', '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#F7DC6F', '#BB8FCE', '#FFFFFF'];
-            let html = `
-                <canvas id="drawingCanvas" width="500" height="400"></canvas>
-                <div class="color-palette">
-            `;
-            colors.forEach((color, i) => {
-                html += `<div class="palette-color ${i === 0 ? 'active' : ''}" style="background: ${color}" onclick="selectColor('${color}', this)"></div>`;
+        
+        // Counting Game
+        function initCountingGame() {
+            const emojis = ['🌟','🎈','🍎','🐶','🎨'];
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const count = Math.floor(Math.random() * 10) + 1;
+            gameData = {count, score: 0};
+            
+            let html = `<div class="score">Score: ${gameData.score} 🌟</div>`;
+            html += '<p style="text-align:center;font-size:1.5em;margin-bottom:20px;">How many?</p>';
+            html += '<div style="font-size:3em;text-align:center;margin:30px;">';
+            for (let i = 0; i < count; i++) html += emoji + ' ';
+            html += '</div><div class="quiz-options">';
+            const opts = [count, count + 1, count - 1, count + 2].filter(n => n > 0).sort(() => Math.random() - 0.5);
+            opts.slice(0, 4).forEach(n => {
+                html += `<button class="quiz-option" onclick="checkCount(${n})">${n}</button>`;
             });
-            html += `</div>
-                <button class="play-btn" onclick="clearCanvas()" style="margin: 10px auto; display: block;">Clear Canvas</button>
-            `;
+            html += '</div>';
             document.getElementById('gameArea').innerHTML = html;
-            
-            const canvas = document.getElementById('drawingCanvas');
-            const ctx = canvas.getContext('2d');
-            let drawing = false;
-            let currentColor = '#000000';
-            
-            gameData = { ctx, currentColor, drawing: false };
-            
-            function startDrawing(e) {
-                gameData.drawing = true;
-                const rect = canvas.getBoundingClientRect();
-                const x = (e.clientX || e.touches[0].clientX) - rect.left;
-                const y = (e.clientY || e.touches[0].clientY) - rect.top;
-                ctx.beginPath();
-                ctx.moveTo(x, y);
-            }
-            
-            function draw(e) {
-                if (!gameData.drawing) return;
-                e.preventDefault();
-                const rect = canvas.getBoundingClientRect();
-                const x = (e.clientX || e.touches[0].clientX) - rect.left;
-                const y = (e.clientY || e.touches[0].clientY) - rect.top;
-                ctx.lineTo(x, y);
-                ctx.strokeStyle = gameData.currentColor;
-                ctx.lineWidth = 5;
-                ctx.lineCap = 'round';
-                ctx.stroke();
-            }
-            
-            function stopDrawing() {
-                gameData.drawing = false;
-            }
-            
-            canvas.addEventListener('mousedown', startDrawing);
-            canvas.addEventListener('mousemove', draw);
-            canvas.addEventListener('mouseup', stopDrawing);
-            canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startDrawing(e); });
-            canvas.addEventListener('touchmove', draw);
-            canvas.addEventListener('touchend', stopDrawing);
         }
-
-        function selectColor(color, element) {
+        
+        function checkCount(answer) {
+            if (answer === gameData.count) {
+                playSound('correct');
+                gameData.score++;
+                alert('🎉 Correct!');
+                initCountingGame();
+            } else {
+                playSound('wrong');
+                alert('❌ Try again!');
+            }
+        }
+        
+        // Alphabet Match
+        function initAlphabetGame() {
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+            const target = letters[Math.floor(Math.random() * letters.length)];
+            gameData = {targetLetter: target, score: 0};
+            
+            let html = `<div class="score">Score: ${gameData.score} 🌟</div>`;
+            html += `<div style="font-size:2.5em;color:#667eea;margin:30px 0;font-weight:bold;text-align:center;">Find: ${target}</div>`;
+            html += '<div class="quiz-options">';
+            const opts = [target, ...letters.filter(l => l !== target).sort(() => Math.random() - 0.5).slice(0, 3)].sort(() => Math.random() - 0.5);
+            opts.forEach(l => {
+                html += `<button class="quiz-option" onclick="checkAlphabet('${l}')">${l}</button>`;
+            });
+            html += '</div>';
+            document.getElementById('gameArea').innerHTML = html;
+        }
+        
+        function checkAlphabet(selected) {
+            if (selected === gameData.targetLetter) {
+                playSound('correct');
+                gameData.score++;
+                alert('🎉 Correct!');
+                initAlphabetGame();
+            } else {
+                playSound('wrong');
+                alert('❌ Try again!');
+            }
+        }
+        
+        // Shape Sorter
+        function initShapesGame() {
+            const shapes = ['🔴 Circle', '🟦 Square', '🔺 Triangle', '⭐ Star'];
+            const target = shapes[Math.floor(Math.random() * shapes.length)];
+            gameData = {target, score: 0};
+            
+            let html = `<div class="score">Score: ${gameData.score} 🌟</div>`;
+            html += `<div style="font-size:2.5em;color:#667eea;margin:30px 0;font-weight:bold;text-align:center;">Find: ${target.split(' ')[1]}</div>`;
+            html += '<div class="quiz-options">';
+            shapes.sort(() => Math.random() - 0.5).forEach(s => {
+                html += `<button class="quiz-option" onclick="checkShape('${s}')">${s}</button>`;
+            });
+            html += '</div>';
+            document.getElementById('gameArea').innerHTML = html;
+        }
+        
+        function checkShape(selected) {
+            if (selected === gameData.target) {
+                playSound('correct');
+                gameData.score++;
+                alert('🎉 Correct!');
+                initShapesGame();
+            } else {
+                playSound('wrong');
+                alert('❌ Try again!');
+            }
+        }
+        
+        // Animal Sounds
+        function initAnimalsGame() {
+            const animals = [
+                {name: 'Dog', emoji: '🐶', sound: 'Woof! Woof!'},
+                {name: 'Cat', emoji: '🐱', sound: 'Meow! Meow!'},
+                {name: 'Cow', emoji: '🐮', sound: 'Moo! Moo!'},
+                {name: 'Pig', emoji: '🐷', sound: 'Oink! Oink!'},
+                {name: 'Duck', emoji: '🦆', sound: 'Quack! Quack!'},
+                {name: 'Lion', emoji: '🦁', sound: 'Roar! Roar!'}
+            ];
+            const animal = animals[Math.floor(Math.random() * animals.length)];
+            gameData = {correctAnimal: animal.name, animals, score: 0};
+            
+            let html = `<div class="score">Score: ${gameData.score} 🌟</div>`;
+            html += `<div style="font-size:2.5em;color:#667eea;margin:20px 0;font-weight:bold;text-align:center;">What sound does this make?<br>${animal.emoji}</div>`;
+            html += `<p style="text-align:center;font-size:2em;margin:20px;color:#667eea;font-weight:bold;">"${animal.sound}"</p>`;
+            html += '<div class="quiz-options">';
+            animals.sort(() => Math.random() - 0.5).slice(0, 4).forEach(a => {
+                html += `<button class="quiz-option" onclick="checkAnimal('${a.name}')">${a.emoji} ${a.name}</button>`;
+            });
+            html += '</div>';
+            document.getElementById('gameArea').innerHTML = html;
+        }
+        
+        function checkAnimal(selected) {
+            if (selected === gameData.correctAnimal) {
+                playSound('correct');
+                gameData.score++;
+                alert('🎉 Correct!');
+                initAnimalsGame();
+            } else {
+                playSound('wrong');
+                alert('❌ Try again!');
+            }
+        }
+        
+        // Pattern Match
+        function initPatternGame() {
+            const shapes = ['🔴','🔵','🟢','🟡','🟣'];
+            const pattern = Array(4).fill(0).map(() => shapes[Math.floor(Math.random() * shapes.length)]);
+            const correctNext = shapes[Math.floor(Math.random() * shapes.length)];
+            const options = [correctNext, ...Array(2).fill(0).map(() => shapes[Math.floor(Math.random() * shapes.length)])];
+            pattern.push(correctNext);
+            gameData = {correctAnswer: correctNext, score: 0};
+            
+            let html = `<div class="score">Score: ${gameData.score} 🌟</div>`;
+            html += '<p style="text-align:center;font-size:1.5em;margin-bottom:20px;">Complete the pattern!</p>';
+            html += '<div style="font-size:4em;text-align:center;margin:30px;">';
+            pattern.forEach((s, i) => {
+                if (i < pattern.length - 1) html += s + ' ';
+                else html += '<span style="color:#ccc;">?</span>';
+            });
+            html += '</div><div class="quiz-options">';
+            options.forEach(o => {
+                html += `<button class="quiz-option" onclick="checkPattern('${o}')">${o}</button>`;
+            });
+            html += '</div>';
+            document.getElementById('gameArea').innerHTML = html;
+        }
+        
+        function checkPattern(selected) {
+            if (selected === gameData.correctAnswer) {
+                playSound('correct');
+                gameData.score++;
+                alert('🎉 Correct!');
+                initPatternGame();
+            } else {
+                playSound('wrong');
+                alert('❌ Try again!');
+            }
+        }
+        
+        // Puzzle Game
+        function initPuzzleGame() {
+            const size = 3;
+            const puzzle = [];
+            for (let i = 0; i < size * size - 1; i++) puzzle.push(i + 1);
+            puzzle.push(0);
+            puzzle.sort(() => Math.random() - 0.5);
+            gameData = {puzzle, size, moves: 0};
+            renderPuzzle();
+        }
+        
+        function renderPuzzle() {
+            let html = `<div class="score">Moves: ${gameData.moves}</div>`;
+            html += `<div style="display:grid;grid-template-columns:repeat(${gameData.size},1fr);gap:10px;max-width:400px;margin:30px auto;">`;
+            gameData.puzzle.forEach((n, i) => {
+                if (n === 0) {
+                    html += '<div style="aspect-ratio:1;background:rgba(0,0,0,0.1);border-radius:20px;"></div>';
+                } else {
+                    html += `<button onclick="movePuzzlePiece(${i})" style="aspect-ratio:1;font-size:2.5em;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:20px;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.3);font-family:'Times New Roman',Times,serif;">${n}</button>`;
+                }
+            });
+            html += '</div><button class="play-btn" onclick="initPuzzleGame()" style="margin:20px auto;display:block;">New Puzzle</button>';
+            document.getElementById('gameArea').innerHTML = html;
+        }
+        
+        function movePuzzlePiece(index) {
+            const emptyIndex = gameData.puzzle.indexOf(0);
+            const validMoves = [emptyIndex - 1, emptyIndex + 1, emptyIndex - gameData.size, emptyIndex + gameData.size];
+            
+            if (validMoves.includes(index) && 
+                !(emptyIndex % gameData.size === 0 && index === emptyIndex - 1) && 
+                !(emptyIndex % gameData.size === gameData.size - 1 && index === emptyIndex + 1)) {
+                playSound('move');
+                [gameData.puzzle[index], gameData.puzzle[emptyIndex]] = [gameData.puzzle[emptyIndex], gameData.puzzle[index]];
+                gameData.moves++;
+                renderPuzzle();
+                
+                if (checkPuzzleSolved()) {
+                    setTimeout(() => {
+                        playSound('win');
+                        alert(`🎉 Puzzle Solved in ${gameData.moves} moves!`);
+                    }, 100);
+                }
+            }
+        }
+        
+        function checkPuzzleSolved() {
+            for (let i = 0; i < gameData.puzzle.length - 1; i++) {
+                if (gameData.puzzle[i] !== i + 1) return false;
+            }
+            return gameData.puzzle[gameData.puzzle.length - 1] === 0;
+        }
+        
+        // Tic Tac Toe
+        function initTicTacToeGame() {
+            gameData = {board: Array(9).fill(''), currentPlayer: 'X', gameOver: false};
+            let html = '<div class="score">Your turn: X</div>';
+            html += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:400px;margin:30px auto;">';
+            for (let i = 0; i < 9; i++) {
+                html += `<button onclick="makeMove(${i})" id="cell-${i}" style="aspect-ratio:1;font-size:3em;background:linear-gradient(135deg,#f093fb,#f5576c);color:white;border:none;border-radius:20px;cursor:pointer;box-shadow:0 8px 25px rgba(240,147,251,0.4);font-family:'Times New Roman',Times,serif;"></button>`;
+            }
+            html += '</div><button class="play-btn" onclick="initTicTacToeGame()" style="margin:20px auto;display:block;">New Game</button>';
+            document.getElementById('gameArea').innerHTML = html;
+        }
+        
+        function makeMove(index) {
+            if (gameData.board[index] || gameData.gameOver) return;
+            
             playSound('click');
-            document.querySelectorAll('.palette-color').forEach(el => el.classList.remove('active'));
-            element.classList.add('active');
-            gameData.currentColor = color;
+            gameData.board[index] = gameData.currentPlayer;
+            document.getElementById(`cell-${index}`).textContent = gameData.currentPlayer;
+            
+            if (checkWinner()) {
+                playSound('win');
+                updateScore(`${gameData.currentPlayer} Wins! 🎉`);
+                gameData.gameOver = true;
+                return;
+            }
+            
+            if (!gameData.board.includes('')) {
+                updateScore('Draw! 🤝');
+                gameData.gameOver = true;
+                return;
+            }
+            
+            gameData.currentPlayer = gameData.currentPlayer === 'X' ? 'O' : 'X';
+            updateScore(`Your turn: ${gameData.currentPlayer}`);
+            
+            if (gameData.currentPlayer === 'O' && !gameData.gameOver) {
+                setTimeout(computerMove, 500);
+            }
         }
-
-        function clearCanvas() {
-            playSound('click');
-            const canvas = document.getElementById('drawingCanvas');
-            gameData.ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        function computerMove() {
+            const empty = gameData.board.map((v, i) => v === '' ? i : -1).filter(i => i !== -1);
+            if (empty.length > 0) {
+                const move = empty[Math.floor(Math.random() * empty.length)];
+                makeMove(move);
+            }
         }
-
-        // 6. Simon Says
+        
+        function checkWinner() {
+            const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+            return wins.some(w => gameData.board[w[0]] && gameData.board[w[0]] === gameData.board[w[1]] && gameData.board[w[0]] === gameData.board[w[2]]);
+        }
+        
+        // Snake & Ladder
+        function initSnakeLadderGame() {
+            gameData = {
+                playerPos: 0,
+                diceValue: 0,
+                snakes: {16: 6, 47: 26, 49: 11, 62: 19, 87: 24, 93: 73, 95: 75, 98: 78},
+                ladders: {1: 38, 4: 14, 9: 31, 21: 42, 28: 84, 51: 67, 71: 91, 80: 100}
+            };
+            renderSnakeLadderBoard();
+        }
+        
+        function renderSnakeLadderBoard() {
+            let html = `<div class="score">Position: ${gameData.playerPos} 🎯</div>`;
+            html += '<div style="max-width:500px;margin:20px auto;"><div style="display:grid;grid-template-columns:repeat(10,1fr);gap:2px;background:#f0f0f0;padding:10px;border-radius:20px;">';
+            
+            for (let i = 100; i >= 1; i -= 10) {
+                const row = Math.floor((100 - i) / 10);
+                const start = row % 2 === 0 ? i : i - 9;
+                const end = row % 2 === 0 ? i - 9 : i;
+                const step = row % 2 === 0 ? -1 : 1;
+                
+                for (let j = start; row % 2 === 0 ? j >= end : j <= end; j += step) {
+                    let cellContent = j;
+                    if (gameData.snakes[j]) cellContent += ' 🐍';
+                    if (gameData.ladders[j]) cellContent += ' 🪜';
+                    
+                    html += `<div class="board-cell">${cellContent}`;
+                    if (gameData.playerPos === j) {
+                        html += '<div class="player-token" style="background:#4ECDC4;top:5px;right:5px;"></div>';
+                    }
+                    html += '</div>';
+                }
+            }
+            
+            html += '</div></div>';
+            html += `<div class="dice" onclick="rollDice()">${gameData.diceValue || '🎲'}</div>`;
+            html += '<p style="text-align:center;font-size:1.2em;margin:10px;">Click dice to roll!</p>';
+            document.getElementById('gameArea').innerHTML = html;
+        }
+        
+        function rollDice() {
+            playSound('dice');
+            gameData.diceValue = Math.floor(Math.random() * 6) + 1;
+            let newPos = gameData.playerPos + gameData.diceValue;
+            
+            if (newPos <= 100) {
+                gameData.playerPos = newPos;
+                
+                if (gameData.snakes[newPos]) {
+                    setTimeout(() => {
+                        playSound('wrong');
+                        alert(`🐍 Snake! Going down to ${gameData.snakes[newPos]}`);
+                        gameData.playerPos = gameData.snakes[newPos];
+                        renderSnakeLadderBoard();
+                    }, 500);
+                } else if (gameData.ladders[newPos]) {
+                    setTimeout(() => {
+                        playSound('correct');
+                        alert(`🪜 Ladder! Climbing up to ${gameData.ladders[newPos]}`);
+                        gameData.playerPos = gameData.ladders[newPos];
+                        renderSnakeLadderBoard();
+                    }, 500);
+                }
+                
+                if (gameData.playerPos === 100) {
+                    setTimeout(() => {
+                        playSound('win');
+                        alert(`🎉 Congratulations ${currentUser.name}! You Won!`);
+                    }, 600);
+                }
+            }
+            renderSnakeLadderBoard();
+        }
+        
+        // Ludo Game
+        function initLudoGame() {
+            gameData = {
+                currentPlayer: 0,
+                diceValue: 0,
+                players: [
+                    {color: '#FF0000', name: 'Red', position: 0},
+                    {color: '#00FF00', name: 'Green', position: 0},
+                    {color: '#0000FF', name: 'Blue', position: 0},
+                    {color: '#FFFF00', name: 'Yellow', position: 0}
+                ]
+            };
+            renderLudoBoard();
+        }
+        
+        function renderLudoBoard() {
+            const player = gameData.players[gameData.currentPlayer];
+            let html = `<div class="score">${player.name} Player's Turn</div>`;
+            html += '<div style="position:relative;width:400px;height:400px;margin:20px auto;background:white;border:5px solid #333;border-radius:20px;">';
+            
+            gameData.players.forEach((p, i) => {
+                const angle = (i * 90) * Math.PI / 180;
+                const x = 200 + Math.cos(angle) * 150;
+                const y = 200 + Math.sin(angle) * 150;
+                html += `<div style="position:absolute;left:${x}px;top:${y}px;width:30px;height:30px;background:${p.color};border-radius:50%;border:3px solid white;box-shadow:0 5px 15px rgba(0,0,0,0.3);"></div>`;
+            });
+            
+            html += '</div>';
+            html += `<div class="dice" onclick="rollLudoDice()">${gameData.diceValue || '🎲'}</div>`;
+            html += '<p style="text-align:center;font-size:1.2em;margin:10px;">Click dice to roll and move!</p>';
+            document.getElementById('gameArea').innerHTML = html;
+        }
+        
+        function rollLudoDice() {
+            playSound('dice');
+            gameData.diceValue = Math.floor(Math.random() * 6) + 1;
+            const player = gameData.players[gameData.currentPlayer];
+            player.position += gameData.diceValue;
+            
+            if (player.position >= 100) {
+                playSound('win');
+                alert(`🎉 ${player.name} player wins!`);
+                return;
+            }
+            
+            gameData.currentPlayer = (gameData.currentPlayer + 1) % 4;
+            renderLudoBoard();
+        }
+        
+        // Simon Says
         function initSimonGame() {
-            gameData = { sequence: [], userSequence: [], round: 0 };
-            const html = `
-                <div class="score">Round: 0</div>
-                <p style="text-align: center; margin: 20px; font-size: 1.2em;">Watch and repeat the pattern!</p>
-                <div class="simon-grid">
-                    <div class="simon-btn" style="background: #FF6B6B" onclick="simonClick(0)"></div>
-                    <div class="simon-btn" style="background: #4ECDC4" onclick="simonClick(1)"></div>
-                    <div class="simon-btn" style="background: #F7DC6F" onclick="simonClick(2)"></div>
-                    <div class="simon-btn" style="background: #BB8FCE" onclick="simonClick(3)"></div>
-                </div>
-                <button class="play-btn" onclick="startSimon()" style="margin: 20px auto; display: block;">Start Game</button>
-            `;
+            gameData = {sequence: [], userSequence: [], round: 0};
+            let html = '<div class="score">Round: 0</div>';
+            html += '<p style="text-align:center;margin:20px;font-size:1.2em;">Watch and repeat the pattern!</p>';
+            html += '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:400px;margin:30px auto;">';
+            html += '<div id="simon-0" onclick="simonClick(0)" style="aspect-ratio:1;background:#FF6B6B;border-radius:20px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,0.3);"></div>';
+            html += '<div id="simon-1" onclick="simonClick(1)" style="aspect-ratio:1;background:#4ECDC4;border-radius:20px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,0.3);"></div>';
+            html += '<div id="simon-2" onclick="simonClick(2)" style="aspect-ratio:1;background:#F7DC6F;border-radius:20px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,0.3);"></div>';
+            html += '<div id="simon-3" onclick="simonClick(3)" style="aspect-ratio:1;background:#BB8FCE;border-radius:20px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,0.3);"></div>';
+            html += '</div>';
+            html += '<button class="play-btn" onclick="startSimon()" style="margin:20px auto;display:block;">Start Game</button>';
             document.getElementById('gameArea').innerHTML = html;
         }
-
+        
         function startSimon() {
             playSound('click');
             gameData.sequence.push(Math.floor(Math.random() * 4));
             gameData.userSequence = [];
             gameData.round++;
-            document.querySelector('.score').textContent = `Round: ${gameData.round}`;
+            updateScore(`Round: ${gameData.round}`);
             playSimonSequence();
         }
-
+        
         function playSimonSequence() {
-            const buttons = document.querySelectorAll('.simon-btn');
             gameData.sequence.forEach((btn, i) => {
                 setTimeout(() => {
-                    buttons[btn].classList.add('flash');
-                    playSound('success');
-                    setTimeout(() => buttons[btn].classList.remove('flash'), 300);
+                    const el = document.getElementById(`simon-${btn}`);
+                    if (el) {
+                        playSound('click');
+                        el.style.filter = 'brightness(1.8)';
+                        setTimeout(() => el.style.filter = 'brightness(1)', 300);
+                    }
                 }, i * 600);
             });
         }
-
+        
         function simonClick(index) {
             playSound('click');
-            const buttons = document.querySelectorAll('.simon-btn');
-            buttons[index].classList.add('flash');
-            setTimeout(() => buttons[index].classList.remove('flash'), 200);
+            const el = document.getElementById(`simon-${index}`);
+            el.style.filter = 'brightness(1.8)';
+            setTimeout(() => el.style.filter = 'brightness(1)', 200);
             
             gameData.userSequence.push(index);
             
             if (gameData.userSequence[gameData.userSequence.length - 1] !== gameData.sequence[gameData.userSequence.length - 1]) {
-                playSound('error');
-                alert('❌ Wrong! Try again from Round 1');
-                gameData = { sequence: [], userSequence: [], round: 0 };
-                document.querySelector('.score').textContent = 'Round: 0';
+                playSound('wrong');
+                alert('❌ Wrong! Game Over!');
+                gameData = {sequence: [], userSequence: [], round: 0};
+                updateScore('Round: 0');
                 return;
             }
             
             if (gameData.userSequence.length === gameData.sequence.length) {
-                playSound('win');
+                playSound('correct');
                 setTimeout(startSimon, 1000);
             }
         }
-
-        // All remaining game functions (7-15) would continue here...
-        // I'll add the most essential ones to keep the code functional
-
-        // 7. Counting Game
-        function initCountingGame() {
-            gameData = { count: Math.floor(Math.random() * 10) + 1 };
-            const emojis = ['🌟', '🎈', '🍎', '🐶', '🎨'];
-            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        // Whack-a-Mole
+        function initWhackGame() {
+            gameData = {score: 0, moles: [], gameActive: true};
+            let html = '<div class="score">Score: 0 🔨</div>';
+            html += '<p style="text-align:center;margin:20px;font-size:1.2em;">Whack the moles!</p>';
+            html += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:30px auto;max-width:400px;" id="moleGrid"></div>';
+            document.getElementById('gameArea').innerHTML = html;
             
-            let html = '<p style="text-align: center; font-size: 1.5em; margin-bottom: 20px;">How many do you see?</p>';
-            html += '<div style="font-size: 3em; text-align: center; margin: 30px;">';
-            for (let i = 0; i < gameData.count; i++) {
-                html += emoji + ' ';
+            const grid = document.getElementById('moleGrid');
+            for (let i = 0; i < 9; i++) {
+                const hole = document.createElement('div');
+                hole.style.cssText = 'aspect-ratio:1;background:#8B4513;border-radius:50%;position:relative;cursor:pointer;box-shadow:inset 0 10px 20px rgba(0,0,0,0.5);';
+                hole.innerHTML = '<div class="mole" style="position:absolute;bottom:-50px;left:50%;transform:translateX(-50%);font-size:3em;transition:bottom 0.3s;">🐹</div>';
+                hole.onclick = () => whackMole(i);
+                grid.appendChild(hole);
+                gameData.moles.push({element: hole.querySelector('.mole'), visible: false});
             }
-            html += '</div><div class="quiz-options">';
-            const options = [gameData.count, gameData.count + 1, gameData.count - 1, gameData.count + 2].filter(n => n > 0).sort(() => Math.random() - 0.5);
-            options.slice(0, 4).forEach(num => {
-                html += `<button class="quiz-option" onclick="checkCount(${num})">${num}</button>`;
-            });
-            html += '</div>';
+            gameData.interval = setInterval(showMole, 800);
+        }
+        
+        function showMole() {
+            if (!gameData.gameActive) return;
+            const available = gameData.moles.filter(m => !m.visible);
+            if (available.length > 0) {
+                const mole = available[Math.floor(Math.random() * available.length)];
+                mole.visible = true;
+                mole.element.style.bottom = '10px';
+                setTimeout(() => {
+                    if (mole.visible) {
+                        mole.visible = false;
+                        mole.element.style.bottom = '-50px';
+                    }
+                }, 1500);
+            }
+        }
+        
+        function whackMole(index) {
+            if (gameData.moles[index].visible) {
+                playSound('whack');
+                gameData.moles[index].visible = false;
+                gameData.moles[index].element.style.bottom = '-50px';
+                gameData.score++;
+                updateScore(`Score: ${gameData.score} 🔨`);
+            }
+        }
+        
+        // Guess Number
+        function initGuessGame() {
+            const target = Math.floor(Math.random() * 100) + 1;
+            gameData = {target, attempts: 0, maxAttempts: 7};
+            
+            let html = '<div class="score">Guess the number (1-100)</div>';
+            html += '<p style="text-align:center;margin:20px;font-size:1.2em;">I\'m thinking of a number between 1 and 100!</p>';
+            html += '<input type="number" id="guessInput" min="1" max="100" style="width:100%;padding:15px;font-size:1.5em;border:3px solid #667eea;border-radius:20px;text-align:center;margin:20px 0;font-family:\'Times New Roman\',Times,serif;">';
+            html += '<button class="play-btn" onclick="makeGuess()" style="margin:10px auto;display:block;">Make Guess</button>';
+            html += '<div id="guessHint" style="text-align:center;font-size:1.3em;color:#667eea;margin-top:20px;"></div>';
             document.getElementById('gameArea').innerHTML = html;
         }
-
-        function checkCount(answer) {
-            if (answer === gameData.count) {
-                playSound('success');
-                alert('🎉 Correct!');
-                initCountingGame();
+        
+        function makeGuess() {
+            const guess = parseInt(document.getElementById('guessInput').value);
+            if (!guess || guess < 1 || guess > 100) {
+                alert('Please enter a number between 1 and 100!');
+                return;
+            }
+            
+            gameData.attempts++;
+            const hint = document.getElementById('guessHint');
+            
+            if (guess === gameData.target) {
+                playSound('win');
+                alert(`🎉 Correct! You found it in ${gameData.attempts} attempts!`);
+                initGuessGame();
+            } else if (gameData.attempts >= gameData.maxAttempts) {
+                playSound('wrong');
+                alert(`❌ Game Over! The number was ${gameData.target}`);
+                initGuessGame();
             } else {
-                playSound('error');
-                alert('❌ Try counting again!');
+                playSound('click');
+                if (guess < gameData.target) {
+                    hint.textContent = `📈 Higher! Attempts: ${gameData.attempts}/${gameData.maxAttempts}`;
+                } else {
+                    hint.textContent = `📉 Lower! Attempts: ${gameData.attempts}/${gameData.maxAttempts}`;
+                }
             }
         }
-
-        // Simple placeholder functions for remaining games
-        function initAlphabetGame() { alert('Alphabet Match - Coming in your full version!'); closeGame(); }
-        function initShapesGame() { alert('Shape Sorter - Coming in your full version!'); closeGame(); }
-        function initWhackGame() { alert('Whack-a-Mole - Coming in your full version!'); closeGame(); }
-        function initCatcherGame() { alert('Fruit Catcher - Coming in your full version!'); closeGame(); }
-        function initTicTacToeGame() { alert('Tic Tac Toe - Coming in your full version!'); closeGame(); }
-        function initAnimalsGame() { alert('Animal Sounds - Coming in your full version!'); closeGame(); }
-        function initPatternGame() { alert('Pattern Match - Coming in your full version!'); closeGame(); }
-        function initPuzzleGame() { alert('Puzzle Game - Coming in your full version!'); closeGame(); }
+        
+        // Fruit Catch
+        function initCatchGame() {
+            gameData = {score: 0, basketX: 200};
+            let html = '<div class="score">Score: 0 🍎</div>';
+            html += '<div style="position:relative;width:400px;height:400px;margin:20px auto;background:linear-gradient(to bottom,#87ceeb,#90EE90);border-radius:20px;overflow:hidden;" id="catchArea">';
+            html += '<div id="basket" style="position:absolute;bottom:10px;left:200px;width:80px;height:50px;background:#8B4513;border-radius:10px;"></div>';
+            html += '</div>';
+            html += '<div style="text-align:center;margin:20px;"><button class="play-btn" onclick="moveBasket(-20)">◀ Left</button> <button class="play-btn" onclick="moveBasket(20)">Right ▶</button></div>';
+            document.getElementById('gameArea').innerHTML = html;
+            gameData.interval = setInterval(dropFruit, 2000);
+        }
+        
+        function moveBasket(dx) {
+            playSound('move');
+            gameData.basketX = Math.max(0, Math.min(320, gameData.basketX + dx));
+            const basket = document.getElementById('basket');
+            if (basket) basket.style.left = gameData.basketX + 'px';
+        }
+        
+        function dropFruit() {
+            const fruits = ['🍎','🍊','🍌','🍇','🍓'];
+            const catchArea = document.getElementById('catchArea');
+            if (!catchArea) return;
+            
+            const fruit = document.createElement('div');
+            fruit.textContent = fruits[Math.floor(Math.random() * fruits.length)];
+            fruit.style.cssText = `position:absolute;top:0;left:${Math.random()*360}px;font-size:2em;`;
+            catchArea.appendChild(fruit);
+            
+            let top = 0;
+            const fall = setInterval(() => {
+                top += 5;
+                fruit.style.top = top + 'px';
+                
+                if (top > 350) {
+                    const fruitX = parseInt(fruit.style.left);
+                    if (fruitX >= gameData.basketX && fruitX <= gameData.basketX + 80) {
+                        playSound('catch');
+                        gameData.score++;
+                        updateScore(`Score: ${gameData.score} 🍎`);
+                    }
+                    clearInterval(fall);
+                    fruit.remove();
+                }
+            }, 50);
+        }
+        
+        // Connect Four
+        function initConnectGame() {
+            gameData = {
+                board: Array(6).fill(null).map(() => Array(7).fill('')),
+                currentPlayer: 'X',
+                gameOver: false
+            };
+            renderConnectBoard();
+        }
+        
+        function renderConnectBoard() {
+            let html = '<div class="score">Player: ' + (gameData.currentPlayer === 'X' ? '🔴' : '🟡') + '</div>';
+            html += '<div style="background:#0066cc;padding:20px;border-radius:20px;max-width:500px;margin:20px auto;">';
+            html += '<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;">';
+            
+            for (let col = 0; col < 7; col++) {
+                html += `<button onclick="dropConnectPiece(${col})" style="padding:10px;background:#4ECDC4;border:none;border-radius:10px;cursor:pointer;font-size:1.2em;font-family:'Times New Roman',Times,serif;">Drop</button>`;
+            }
+            
+            html += '</div><div style="display:grid;grid-template-rows:repeat(6,1fr);gap:8px;margin-top:10px;">';
+            
+            for (let row = 0; row < 6; row++) {
+                html += '<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;">';
+                for (let col = 0; col < 7; col++) {
+                    const cell = gameData.board[row][col];
+                    const color = cell === 'X' ? '🔴' : cell === 'O' ? '🟡' : '⚪';
+                    html += `<div style="aspect-ratio:1;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2em;">${color}</div>`;
+                }
+                html += '</div>';
+            }
+            
+            html += '</div></div>';
+            html += '<button class="play-btn" onclick="initConnectGame()" style="margin:20px auto;display:block;">New Game</button>';
+            document.getElementById('gameArea').innerHTML = html;
+        }
+        
+        function dropConnectPiece(col) {
+            if (gameData.gameOver) return;
+            
+            for (let row = 5; row >= 0; row--) {
+                if (gameData.board[row][col] === '') {
+                    playSound('click');
+                    gameData.board[row][col] = gameData.currentPlayer;
+                    renderConnectBoard();
+                    
+                    if (checkConnectWin(row, col)) {
+                        setTimeout(() => {
+                            playSound('win');
+                            alert(`🎉 ${gameData.currentPlayer === 'X' ? 'Red' : 'Yellow'} wins!`);
+                            gameData.gameOver = true;
+                        }, 100);
+                        return;
+                    }
+                    
+                    gameData.currentPlayer = gameData.currentPlayer === 'X' ? 'O' : 'X';
+                    renderConnectBoard();
+                    return;
+                }
+            }
+        }
+        
+        function checkConnectWin(row, col) {
+            const player = gameData.board[row][col];
+            
+            // Check horizontal
+            let count = 1;
+            for (let c = col - 1; c >= 0 && gameData.board[row][c] === player; c--) count++;
+            for (let c = col + 1; c < 7 && gameData.board[row][c] === player; c++) count++;
+            if (count >= 4) return true;
+            
+            // Check vertical
+            count = 1;
+            for (let r = row - 1; r >= 0 && gameData.board[r][col] === player; r--) count++;
+            for (let r = row + 1; r < 6 && gameData.board[r][col] === player; r++) count++;
+            if (count >= 4) return true;
+            
+            // Check diagonal
+            count = 1;
+            for (let i = 1; row - i >= 0 && col - i >= 0 && gameData.board[row - i][col - i] === player; i++) count++;
+            for (let i = 1; row + i < 6 && col + i < 7 && gameData.board[row + i][col + i] === player; i++) count++;
+            if (count >= 4) return true;
+            
+            count = 1;
+            for (let i = 1; row - i >= 0 && col + i < 7 && gameData.board[row - i][col + i] === player; i++) count++;
+            for (let i = 1; row + i < 6 && col - i >= 0 && gameData.board[row + i][col - i] === player; i++) count++;
+            if (count >= 4) return true;
+            
+            return false;
+        }
     </script>
 </body>
 </html>
